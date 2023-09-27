@@ -1,0 +1,38 @@
+class BankAccount:
+    def __init__(self, account_number, account_holder_name, initial_balance=0):
+        self.__account_number = account_number
+        self.__account_holder_name = account_holder_name
+        self.__account_balance = initial_balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__account_balance += amount
+            print(f"Deposited {amount} into the account.")
+        else:
+            print("Invalid amount. Deposit amount must be greater than 0.")
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if self.__account_balance >= amount:
+                self.__account_balance -= amount
+                print(f"Withdraw {amount} from the account.")
+            else:
+                print("Insufficient funds.")
+        else:
+            print("Invalid amount. Withdrawal amount must be greater than 0.")
+
+    def display_balance(self):
+        print(f"Account Balance: {self.__account_balance}")
+
+
+# Testing the BankAccount class
+account = BankAccount("1234567890", "Harish")
+account.display_balance()  # Output: Account Balance: 0
+
+account.deposit(1000)  # Output: Deposited 1000 into the account.
+account.display_balance()  # Output: Account Balance: 1000
+
+account.withdraw(500)  # Output: Withdrew 500 from the account.
+account.display_balance()  # Output: Account Balance: 500
+
+account.withdraw(1000)  # Output: Insufficient funds.
